@@ -1,16 +1,33 @@
-import { Button } from "@chakra-ui/react/button";
+import { Box, Grid, GridItem } from "@chakra-ui/react";
 import "./App.css";
 
 function App() {
   return (
     <>
-      <Button colorScheme="dark" color={"blue"}>
-        Click
-      </Button>
+      <Grid
+        templateAreas={{
+          base: `"nav" "main"`,
+          lg: `"nav nav" "aside main"`,
+        }}
+      >
+        <GridItem area={"nav"} bg={"tomato"}>
+          Nav
+        </GridItem>
+        <Box hideBelow="lg">
+          <GridItem area="aside" bg={"yellow.600"}>
+            Aside
+          </GridItem>
+        </Box>
+
+        <GridItem area={"main"} bg={"midnightblue"}>
+          Main
+        </GridItem>
+      </Grid>
     </>
   );
 }
 
-//f1c1b13f7d714d8db48c6e15ccccd998
-
 export default App;
+
+//f1c1b13f7d714d8db48c6e15ccccd998
+// "@chakra-ui/react": "^3.27.1",
