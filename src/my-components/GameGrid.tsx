@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import apiClient from "./api-client";
+import apiClient from "../services/api-client";
 import { Text } from "@chakra-ui/react";
 
 interface Game {
@@ -17,10 +17,10 @@ function GameGrid() {
   const [error, setError] = useState("");
   useEffect(() => {
     apiClient
-      .get<FetchGamesResponse>("/xgames")
+      .get<FetchGamesResponse>("/games")
       .then((res) => setGames(res.data.results))
       .catch((err) => setError(err.message));
-  });
+  }, []);
   return (
     <>
       {error && <Text>{error}</Text>}
