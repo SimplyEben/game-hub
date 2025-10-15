@@ -24,12 +24,14 @@ interface FetchGamesResponse {
 function useGames() {
   const [games, setGames] = useState<Game[]>([]);
   const [error, setError] = useState("");
+  const [isLoading, setLoading] = useState(false);
   useEffect(() => {
     //Handling cancellations
     //Cretaing a controller object and set it to an instance of AbortController().
 
     const controller = new AbortController();
 
+    setLoading(true);
     /*we pass an object as a second argument when making a get request and set the signal property to controller.signal. */
 
     apiClient
@@ -38,14 +40,15 @@ function useGames() {
       .catch((err) => {
         if (err instanceof CanceledError) return;
         setError(err.message);
-      });
+      })
+      .finally(() => setLoading(false));
 
     //adding/returning a clean up function after calling apiClient.get by calling the controller.abort()
 
     return () => controller.abort();
   }, []);
 
-  return { games, error };
+  return { games, error, isLoading };
 }
 
 export default useGames;
