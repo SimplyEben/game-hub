@@ -36,12 +36,15 @@ function useGames() {
 
     apiClient
       .get<FetchGamesResponse>("/games", { signal: controller.signal })
-      .then((res) => setGames(res.data.results))
+      .then((res) => {
+        setGames(res.data.results);
+        setLoading(false);
+      })
       .catch((err) => {
         if (err instanceof CanceledError) return;
         setError(err.message);
-      })
-      .finally(() => setLoading(false));
+        setLoading(false);
+      });
 
     //adding/returning a clean up function after calling apiClient.get by calling the controller.abort()
 
