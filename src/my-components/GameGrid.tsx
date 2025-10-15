@@ -7,12 +7,7 @@ function GameGrid() {
   return (
     <>
       {error && <Text>{error}</Text>}
-      <SimpleGrid
-        columns={{ sm: 1, md: 2, xl: 5 }}
-        spaceX={10}
-        spaceY={10}
-        padding="10px"
-      >
+      <SimpleGrid columns={{ sm: 1, md: 2, xl: 5 }} spaceY={10} padding="10px">
         {games.map((game) => (
           <GameCard key={game.id} game={game} />
         ))}

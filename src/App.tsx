@@ -21,7 +21,7 @@ function App() {
           </GridItem>
         </Box>
 
-        <GridItem area={"main"} bg={"midnightblue"}>
+        <GridItem area={"main"}>
           <GameGrid />
         </GridItem>
       </Grid>
