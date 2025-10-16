@@ -1,11 +1,12 @@
-import { HStack, Image, Text } from "@chakra-ui/react";
+import { HStack, Image } from "@chakra-ui/react";
 import logo from "../assets/logo.webp";
 import ModeSwitch from "./ModeSwitch";
+import SearchInput from "./SearchInput";
 function NavBar() {
   return (
-    <HStack justify="space-between" padding="10px">
+    <HStack padding="10px">
       <Image src={logo} boxSize="60px" />
-      <Text>Navbar</Text>
+      <SearchInput />
       <ModeSwitch />
     </HStack>
   );
