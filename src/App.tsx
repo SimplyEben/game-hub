@@ -28,7 +28,10 @@ function App() {
           {/* passing the props that take the genre object to the GenreList component*/}
           <GridItem area="aside" paddingX={5}>
             {/* passing a prop as a function that takes the selected genre object and call => setSelectedGenre(genre)*/}
-            <GenreList onSelectGenre={(genre) => setSelectedGenre(genre)} />
+            <GenreList
+              selectedGenre={selectedGenre}
+              onSelectGenre={(genre) => setSelectedGenre(genre)}
+            />
           </GridItem>
         </Box>
 

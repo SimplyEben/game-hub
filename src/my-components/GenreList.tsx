@@ -5,9 +5,10 @@ import { HStack, List, Image, Spinner, Button } from "@chakra-ui/react";
 interface Props {
   //when a genre is selected, the GenreList will notify the App component through this prop (onSelectGenre) which is a function that takes a genre object.
   onSelectGenre: (genre: Genre) => void;
+  selectedGenre: Genre | null;
 }
 
-function GenreList({ onSelectGenre }: Props) {
+function GenreList({ onSelectGenre, selectedGenre }: Props) {
   const { data, isLoading, error } = useGenres();
   if (error) return null;
   if (isLoading) return <Spinner />;
@@ -27,6 +28,7 @@ function GenreList({ onSelectGenre }: Props) {
               fontSize="md"
               asChild
               onClick={() => onSelectGenre(genre)}
+              fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
             >
               <a href="#">{genre.name}</a>
             </Button>
