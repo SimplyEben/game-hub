@@ -6,10 +6,17 @@ import GenreList from "./my-components/GenreList";
 import { useState } from "react";
 import type { Genre } from "./hooks/useGenres";
 import PlatformSelector from "./my-components/PlatformSelector";
+import type { Platform } from "./hooks/useGames";
 
 function App() {
   //the  selectedGenre variable can either hold the Genre object or null.
   const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
+
+  //a state variable for keeping track of the selected platform. when the platform changes we pass the selected platform to the GameGrid for filtering
+
+  const [selectedPlatform, setSelecetedPlatform] = useState<Platform | null>(
+    null
+  );
   return (
     <>
       <Grid
@@ -37,8 +44,14 @@ function App() {
         </Box>
 
         <GridItem area={"main"}>
-          <PlatformSelector />
-          <GameGrid selectedGenre={selectedGenre} />
+          <PlatformSelector
+            selectedPlatform={selectedPlatform}
+            onSelectPlatform={(platform) => setSelecetedPlatform(platform)}
+          />
+          <GameGrid
+            selectedPlatform={selectedPlatform}
+            selectedGenre={selectedGenre}
+          />
         </GridItem>
       </Grid>
     </>

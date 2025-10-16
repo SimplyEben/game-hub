@@ -16,10 +16,15 @@ export interface Game {
 }
 
 // we need to pass the selectedGenre to the data hook but our data hook currently only takes an endpoint bu we can make it flexible by given it an axios request config object. Done in the useData hook
-const useGames = (selectedGenre: Genre | null) =>
-  useData<Game>("/games", { params: { genres: selectedGenre?.id } }, [
-    selectedGenre?.id,
-  ]);
+const useGames = (
+  selectedGenre: Genre | null,
+  selectedPlatform: Platform | null
+) =>
+  useData<Game>(
+    "/games",
+    { params: { genres: selectedGenre?.id, platforms: selectedPlatform?.id } },
+    [selectedGenre?.id, selectedPlatform?.id]
+  );
 //the selectedGenre is optional so if selectedGenre is null, the genre will also be null.
 export default useGames;
 
