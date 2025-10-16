@@ -1,4 +1,4 @@
-import { Box, Grid, GridItem, HStack } from "@chakra-ui/react";
+import { Box, Flex, Grid, GridItem } from "@chakra-ui/react";
 import "./App.css";
 import NavBar from "./my-components/NavBar";
 import GameGrid from "./my-components/GameGrid";
@@ -53,7 +53,7 @@ const [selectedPlatform, setSelecetedPlatform] = useState<Platform | null>(
         </Box>
 
         <GridItem area={"main"}>
-          <HStack spaceX={2} paddingLeft={2.5}>
+          <Flex gapX={5} paddingLeft={2.5}>
             <PlatformSelector
               selectedPlatform={gameQuery.platform}
               onSelectPlatform={(platform) =>
@@ -66,7 +66,7 @@ const [selectedPlatform, setSelecetedPlatform] = useState<Platform | null>(
                 setGameQuery({ ...gameQuery, sortOrder })
               }
             />
-          </HStack>
+          </Flex>
           <GameGrid gameQuery={gameQuery} />
         </GridItem>
       </Grid>
