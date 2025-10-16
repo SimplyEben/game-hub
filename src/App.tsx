@@ -13,6 +13,7 @@ export interface GameQuery {
   genre: Genre | null;
   platform: Platform | null;
   sortOrder: string;
+  searchText: string;
 }
 
 function App() {
@@ -39,7 +40,11 @@ const [selectedPlatform, setSelecetedPlatform] = useState<Platform | null>(
         }}
       >
         <GridItem area={"nav"}>
-          <NavBar />
+          <NavBar
+            onSearch={(searchText) =>
+              setGameQuery({ ...gameQuery, searchText })
+            }
+          />
         </GridItem>
         <Box hideBelow="lg">
           {/* passing the props that take the genre object to the GenreList component*/}
