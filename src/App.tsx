@@ -3,8 +3,12 @@ import "./App.css";
 import NavBar from "./my-components/NavBar";
 import GameGrid from "./my-components/GameGrid";
 import GenreList from "./my-components/GenreList";
+import { useState } from "react";
+import type { Genre } from "./hooks/useGenres";
 
 function App() {
+  //the  selectedGenre variable can either hold the Genre object or null.
+  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
   return (
     <>
       <Grid
@@ -14,20 +18,22 @@ function App() {
         }}
         templateColumns={{
           base: "1fr",
-          lg: "200px 1fr",
+          lg: "250px 1fr",
         }}
       >
         <GridItem area={"nav"}>
           <NavBar />
         </GridItem>
         <Box hideBelow="lg">
+          {/* passing the props that take the genre object to the GenreList component*/}
           <GridItem area="aside" paddingX={5}>
-            <GenreList />
+            {/* passing a prop as a function that takes the selected genre object and call => setSelectedGenre(genre)*/}
+            <GenreList onSelectGenre={(genre) => setSelectedGenre(genre)} />
           </GridItem>
         </Box>
 
         <GridItem area={"main"}>
-          <GameGrid />
+          <GameGrid selectedGenre={selectedGenre} />
         </GridItem>
       </Grid>
     </>
