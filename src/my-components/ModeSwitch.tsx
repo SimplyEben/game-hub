@@ -5,7 +5,7 @@ function ModeSwitch() {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
-    <Button variant="outline" onClick={toggleColorMode} colorPalette="green">
+    <Button variant="outline" onClick={toggleColorMode} colorPalette="gray">
       {colorMode === "light" ? "Dark Mode" : "Light Mode"}
     </Button>
   );
