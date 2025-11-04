@@ -1,6 +1,6 @@
 import type { GameQuery } from "@/App";
 import APIClient, { type FetchResponse } from "@/services/api-client";
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import type { Platform } from "./usePlatforms";
 
 export interface Game {
@@ -13,24 +13,32 @@ export interface Game {
   //the parent_platform is an array of objects where each object has a property of platform of type Platform
 }
 
-const apiClient = new APIClient("/games");
+const apiClient = new APIClient<Game>("/games");
 // we need to pass the selectedGenre to the data hook but our data hook currently only takes an endpoint bu we can make it flexible by given it an axios request config object. Done in the useData hook
 
 /*both refactored to gameQuery selectedGenre: Genre | null,
   selectedPlatform: Platform | null */
+// Replacing useQuery with useInfinetQuery so we can fetch data in pages
+
 const useGames = (gameQuery: GameQuery) =>
-  useQuery<FetchResponse<Game>, Error>({
+  //passing the query string parameters to the backend
+  useInfiniteQuery<FetchResponse<Game>, Error>({
     queryKey: ["games", gameQuery],
-    //passing the query string parameters to the backend
-    queryFn: () =>
+    // queryFn receiving the page number as a parameter and destructure it to get pageParam
+    queryFn: ({ pageParam = 1 }) =>
       apiClient.getAll({
         params: {
           genres: gameQuery.genre?.id,
           parent_platforms: gameQuery.platform?.id,
           ordering: gameQuery.sortOrder,
           search: gameQuery.searchText,
+          page: pageParam,
         },
       }),
+    getNextPageParam: (lastPage, allPages) => {
+      return lastPage.next ? allPages.length + 1 : undefined;
+    },
+    initialPageParam: 1,
   });
 //the selectedGenre is optional so if selectedGenre is null, the genre will also be null.
 export default useGames;
