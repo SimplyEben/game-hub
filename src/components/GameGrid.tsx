@@ -1,10 +1,10 @@
-import { SimpleGrid, Text } from "@chakra-ui/react";
 import useQueryGames from "@/hooks/useQueryGames";
+import { SimpleGrid, Text } from "@chakra-ui/react";
 // import useGames from "@/hooks/useGames";
-import GameCard from "./GameCard";
-import GameCardSkeleton from "./GameCardSkeleton";
-import GameCardContainer from "./GameCardContainer";
 import type { GameQuery } from "@/App";
+import GameCard from "./GameCard";
+import GameCardContainer from "./GameCardContainer";
+import GameCardSkeleton from "./GameCardSkeleton";
 
 //Passing the selectedGenre to the GameGrid so that it can be passed to the backend when fetching the games
 interface Props {

@@ -1,4 +1,4 @@
-import type { Platform } from "@/hooks/useQueryGames";
+import type { Platform } from "@/hooks/usePlatforms";
 import usePlatforms from "@/hooks/usePlatforms";
 import { Button, Menu, Portal } from "@chakra-ui/react";
 import { ChevronDownIcon } from "lucide-react";
