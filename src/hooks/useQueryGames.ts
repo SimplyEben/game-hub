@@ -1,5 +1,5 @@
 import type { GameQuery } from "@/App";
-import apiClient, { type FetchResponse } from "@/services/api-client";
+import APIClient, { type FetchResponse } from "@/services/api-client";
 import { useQuery } from "@tanstack/react-query";
 import type { Platform } from "./usePlatforms";
 
@@ -13,6 +13,7 @@ export interface Game {
   //the parent_platform is an array of objects where each object has a property of platform of type Platform
 }
 
+const apiClient = new APIClient("/games");
 // we need to pass the selectedGenre to the data hook but our data hook currently only takes an endpoint bu we can make it flexible by given it an axios request config object. Done in the useData hook
 
 /*both refactored to gameQuery selectedGenre: Genre | null,
@@ -20,17 +21,16 @@ export interface Game {
 const useGames = (gameQuery: GameQuery) =>
   useQuery<FetchResponse<Game>, Error>({
     queryKey: ["games", gameQuery],
+    //passing the query string parameters to the backend
     queryFn: () =>
-      apiClient
-        .get<FetchResponse<Game>>("/games", {
-          params: {
-            genres: gameQuery.genre?.id,
-            parent_platforms: gameQuery.platform?.id,
-            ordering: gameQuery.sortOrder,
-            search: gameQuery.searchText,
-          },
-        })
-        .then((res) => res.data),
+      apiClient.getAll({
+        params: {
+          genres: gameQuery.genre?.id,
+          parent_platforms: gameQuery.platform?.id,
+          ordering: gameQuery.sortOrder,
+          search: gameQuery.searchText,
+        },
+      }),
   });
 //the selectedGenre is optional so if selectedGenre is null, the genre will also be null.
 export default useGames;
