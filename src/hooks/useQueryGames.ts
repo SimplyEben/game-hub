@@ -39,6 +39,7 @@ const useGames = (gameQuery: GameQuery) =>
       return lastPage.next ? allPages.length + 1 : undefined;
     },
     initialPageParam: 1,
+    staleTime: 24 * 60 * 60 * 1000,
   });
 //the selectedGenre is optional so if selectedGenre is null, the genre will also be null.
 export default useGames;
