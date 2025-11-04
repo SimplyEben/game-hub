@@ -1,5 +1,6 @@
 import { SimpleGrid, Text } from "@chakra-ui/react";
-import useGames from "@/hooks/useGames";
+import useQueryGames from "@/hooks/useQueryGames";
+// import useGames from "@/hooks/useGames";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
@@ -17,9 +18,9 @@ function GameGrid({ gameQuery }: Props) {
   const { data, error, isLoading } = useGames(selectedGenre, selectedPlatform);*/
 
   // instead of passing multiple argument to the games hook we pass qameQuery which contains the 2 argument or anything we need
-  const { data, error, isLoading } = useGames(gameQuery);
+  const { data, error, isLoading } = useQueryGames(gameQuery);
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-  if (error) return <Text>{error}</Text>;
+  if (error) return <Text>{error.message}</Text>;
 
   return (
     <SimpleGrid
@@ -35,7 +36,7 @@ function GameGrid({ gameQuery }: Props) {
             <GameCardSkeleton />
           </GameCardContainer>
         ))}
-      {data.map((game) => (
+      {data?.results.map((game) => (
         <GameCardContainer key={game.id}>
           <GameCard game={game} />
         </GameCardContainer>
