@@ -2,6 +2,7 @@ import type { GameQuery } from "@/App";
 import APIClient, { type FetchResponse } from "@/services/api-client";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import type { Platform } from "./usePlatforms";
+import ms from "ms";
 
 export interface Game {
   id: number;
@@ -39,7 +40,7 @@ const useGames = (gameQuery: GameQuery) =>
       return lastPage.next ? allPages.length + 1 : undefined;
     },
     initialPageParam: 1,
-    staleTime: 24 * 60 * 60 * 1000,
+    staleTime: ms("24h"),
   });
 //the selectedGenre is optional so if selectedGenre is null, the genre will also be null.
 export default useGames;
