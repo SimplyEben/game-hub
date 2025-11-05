@@ -1,3 +1,4 @@
+import usePlatform from "@/hooks/usePlatform";
 import type { Platform } from "@/hooks/usePlatforms";
 import usePlatforms from "@/hooks/usePlatforms";
 import { Button, Menu, Portal } from "@chakra-ui/react";
@@ -10,9 +11,7 @@ interface Props {
 
 function PlatformSelector({ onSelectPlatform, selectedPlatformId }: Props) {
   const { data, error } = usePlatforms();
-  const selectedPlatform = data?.results.find(
-    (plat) => plat.id === selectedPlatformId
-  );
+  const selectedPlatform = usePlatform(selectedPlatformId);
   if (error) return null;
   return (
     <Menu.Root>
