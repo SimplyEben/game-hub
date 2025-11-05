@@ -24,7 +24,7 @@ function GameGrid({ gameQuery }: Props) {
     useQueryGames(gameQuery);
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
   const fetchGamesCount =
-    data?.pages.reduce((acc, page) => acc + page.results.length, 0) || 0;
+    data?.pages.reduce((total, page) => total + page.results.length, 0) || 0;
   if (error) return <Text>{error.message}</Text>;
 
   return (
