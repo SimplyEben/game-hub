@@ -1,6 +1,10 @@
 // import type { GameQuery } from "@/App";
 // import useData from "./useData";
 
+import { useQuery } from "@tanstack/react-query";
+import APIClient from "@/services/api-client";
+// import type { Game } from "./useQueryGames";
+import type { Platform } from "./usePlatforms";
 // export interface Platform {
 //   id: number;
 //   name: string;
@@ -37,3 +41,24 @@
 // export default useGames;
 
 // //the games hook passes the selectedGenre as a query string parameter to the data hook. We also added an array of dependencies so if any of the dependencies changes, the effect will re-render and fetch the data from the server.
+
+export interface Game {
+  id: number;
+  name: string;
+  background_image: string;
+  metacritic: number;
+  rating_top: number;
+  slug: string;
+  description_raw: string;
+  parent_platforms: { platform: Platform }[];
+  //the parent_platform is an array of objects where each object has a property of platform of type Platform
+}
+
+const apiClient = new APIClient<Game>("/games");
+const useGame = (slug: string) =>
+  useQuery({
+    queryKey: ["games", slug],
+    queryFn: () => apiClient.get(slug),
+  });
+
+export default useGame;

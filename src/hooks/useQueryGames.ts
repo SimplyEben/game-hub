@@ -2,17 +2,20 @@ import APIClient, { type FetchResponse } from "@/services/api-client";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import ms from "ms";
 import useGameQueryStore from "../../src/components/store";
-import type { Platform } from "./usePlatforms";
+// import type { Platform } from "./usePlatforms";
+import type { Game } from "./useGames";
 
-export interface Game {
-  id: number;
-  name: string;
-  background_image: string;
-  metacritic: number;
-  rating_top: number;
-  parent_platforms: { platform: Platform }[];
-  //the parent_platform is an array of objects where each object has a property of platform of type Platform
-}
+// export interface Game {
+//   id: number;
+//   name: string;
+//   background_image: string;
+//   metacritic: number;
+//   rating_top: number;
+//   slug: string;
+//   description_raw: string;
+//   parent_platforms: { platform: Platform }[];
+//   //the parent_platform is an array of objects where each object has a property of platform of type Platform
+// }
 
 const apiClient = new APIClient<Game>("/games");
 // we need to pass the selectedGenre to the data hook but our data hook currently only takes an endpoint bu we can make it flexible by given it an axios request config object. Done in the useData hook
