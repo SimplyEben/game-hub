@@ -1,4 +1,6 @@
 import type { Platform } from "@/entities/Platform";
+import type { Genre } from "./Genre";
+import type { Publisher } from "./Publishers";
 
 // export interface Platform {
 //   id: number;
@@ -36,9 +38,11 @@ import type { Platform } from "@/entities/Platform";
 export interface Game {
   id: number;
   name: string;
+  genres: Genre[];
   background_image: string;
   metacritic: number;
   rating_top: number;
+  publishers: Publisher[];
   slug: string;
   description_raw: string;
   parent_platforms: { platform: Platform }[];
