@@ -1,6 +1,6 @@
-import { Box, Flex, Grid, GridItem } from "@chakra-ui/react";
+/*import { Box, Flex, Grid, GridItem } from "@chakra-ui/react";
 import "./App.css";
-import NavBar from "./components/NavBar";
+// import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
 // import { useState } from "react";
@@ -21,45 +21,42 @@ const [selectedPlatform, setSelecetedPlatform] = useState<Platform | null>(
 
   //refactoring our state hooks selectedPlatform and selectedGenre to a gameQuery hook
   // const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
-  return (
+  /*return (
     <>
       <Grid
         templateAreas={{
-          base: `"nav" "main"`,
-          lg: `"nav nav" "aside main"`,
+          base: ` "main"`,
+          lg: ` "aside main"`,
         }}
         templateColumns={{
           base: "1fr",
           lg: "250px 1fr",
         }}
       >
-        <GridItem area={"nav"}>
-          <NavBar />
-        </GridItem>
         <Box hideBelow="lg">
           {/* passing the props that take the genre object to the GenreList component*/}
-          <GridItem area="aside" paddingX={5}>
+          /*<GridItem area="aside" paddingX={5}>
             {/* passing a prop as a function that takes the selected genre object and call => setSelectedGenre(genre)*/}
-            <GenreList />
-          </GridItem>
-        </Box>
+//             <GenreList />
+//           </GridItem>
+//         </Box>
 
-        <GridItem area={"main"}>
-          <Box paddingLeft={2.5}>
-            <GameHeading />
-            <Flex gapX={5}>
-              <PlatformSelector />
-              <SortSelector />
-            </Flex>
-          </Box>
-          <GameGrid />
-        </GridItem>
-      </Grid>
-    </>
-  );
-}
+//         <GridItem area={"main"}>
+//           <Box paddingLeft={2.5}>
+//             <GameHeading />
+//             <Flex gapX={5}>
+//               <PlatformSelector />
+//               <SortSelector />
+//             </Flex>
+//           </Box>
+//           <GameGrid />
+//         </GridItem>
+//       </Grid>
+//     </>
+//   );
+// }
 
-export default App;
+// export default App;
 
 /*
 before refactoring to gameQuery
@@ -81,4 +78,4 @@ selectedGenre={selectedGenre}
 /> */
 
 //f1c1b13f7d714d8db48c6e15ccccd998
-// "@chakra-ui/react": "^3.27.1",
+// "@chakra-ui/react": "^3.27.1",*/
