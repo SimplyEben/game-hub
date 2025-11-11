@@ -1,8 +1,8 @@
-import type { GameQuery } from "@/App";
 import APIClient, { type FetchResponse } from "@/services/api-client";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import type { Platform } from "./usePlatforms";
 import ms from "ms";
+import useGameQueryStore from "../../src/components/store";
+import type { Platform } from "./usePlatforms";
 
 export interface Game {
   id: number;
@@ -21,9 +21,10 @@ const apiClient = new APIClient<Game>("/games");
   selectedPlatform: Platform | null */
 // Replacing useQuery with useInfinetQuery so we can fetch data in pages
 
-const useGames = (gameQuery: GameQuery) =>
+const useGames = () => {
+  const gameQuery = useGameQueryStore((g) => g.gameQuery);
   //passing the query string parameters to the backend
-  useInfiniteQuery<FetchResponse<Game>, Error>({
+  return useInfiniteQuery<FetchResponse<Game>, Error>({
     queryKey: ["games", gameQuery],
     // queryFn receiving the page number as a parameter and destructure it to get pageParam
     queryFn: ({ pageParam = 1 }) =>
@@ -42,6 +43,7 @@ const useGames = (gameQuery: GameQuery) =>
     initialPageParam: 1,
     staleTime: ms("24h"),
   });
+};
 //the selectedGenre is optional so if selectedGenre is null, the genre will also be null.
 export default useGames;
 

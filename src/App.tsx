@@ -3,19 +3,12 @@ import "./App.css";
 import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
-import { useState } from "react";
+// import { useState } from "react";
 // import type { Genre } from "./hooks/useGenres";
 import PlatformSelector from "./components/PlatformSelector";
 // import type { Platform } from "./hooks/usePlatforms";
 import SortSelector from "./components/SortSelector";
 import GameHeading from "./components/GameHeading";
-
-export interface GameQuery {
-  genreId?: number;
-  platformId?: number;
-  sortOrder: string;
-  searchText: string;
-}
 
 function App() {
   /*the  selectedGenre variable can either hold the Genre object or null.
@@ -27,7 +20,7 @@ const [selectedPlatform, setSelecetedPlatform] = useState<Platform | null>(
   );*/
 
   //refactoring our state hooks selectedPlatform and selectedGenre to a gameQuery hook
-  const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
+  // const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
   return (
     <>
       <Grid
@@ -41,44 +34,25 @@ const [selectedPlatform, setSelecetedPlatform] = useState<Platform | null>(
         }}
       >
         <GridItem area={"nav"}>
-          <NavBar
-            onSearch={(searchText) =>
-              setGameQuery({ ...gameQuery, searchText })
-            }
-          />
+          <NavBar />
         </GridItem>
         <Box hideBelow="lg">
           {/* passing the props that take the genre object to the GenreList component*/}
           <GridItem area="aside" paddingX={5}>
             {/* passing a prop as a function that takes the selected genre object and call => setSelectedGenre(genre)*/}
-            <GenreList
-              selectedGenreId={gameQuery.genreId}
-              onSelectGenre={(genre) =>
-                setGameQuery({ ...gameQuery, genreId: genre.id })
-              }
-            />
+            <GenreList />
           </GridItem>
         </Box>
 
         <GridItem area={"main"}>
           <Box paddingLeft={2.5}>
-            <GameHeading gameQuery={gameQuery} />
+            <GameHeading />
             <Flex gapX={5}>
-              <PlatformSelector
-                selectedPlatformId={gameQuery.platformId}
-                onSelectPlatform={(platform) =>
-                  setGameQuery({ ...gameQuery, platformId: platform.id })
-                }
-              />
-              <SortSelector
-                sortOrder={gameQuery.sortOrder}
-                onSelectSortOrder={(sortOrder) =>
-                  setGameQuery({ ...gameQuery, sortOrder })
-                }
-              />
+              <PlatformSelector />
+              <SortSelector />
             </Flex>
           </Box>
-          <GameGrid gameQuery={gameQuery} />
+          <GameGrid />
         </GridItem>
       </Grid>
     </>

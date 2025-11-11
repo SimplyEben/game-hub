@@ -1,16 +1,19 @@
 import usePlatform from "@/hooks/usePlatform";
-import type { Platform } from "@/hooks/usePlatforms";
 import usePlatforms from "@/hooks/usePlatforms";
 import { Button, Menu, Portal } from "@chakra-ui/react";
 import { ChevronDownIcon } from "lucide-react";
+import useGameQueryStore from "./store";
 
-interface Props {
-  onSelectPlatform: (platform: Platform) => void;
-  selectedPlatformId?: number;
-}
+// interface Props {
+//   onSelectPlatform: (platform: Platform) => void;
+//   selectedPlatformId?: number;
+// }
 
-function PlatformSelector({ onSelectPlatform, selectedPlatformId }: Props) {
+function PlatformSelector() {
   const { data, error } = usePlatforms();
+
+  const selectedPlatformId = useGameQueryStore((p) => p.gameQuery.platformId);
+  const setSelectedPlatformId = useGameQueryStore((p) => p.setPlatformId);
   const selectedPlatform = usePlatform(selectedPlatformId);
   if (error) return null;
   return (
@@ -28,7 +31,7 @@ function PlatformSelector({ onSelectPlatform, selectedPlatformId }: Props) {
               <Menu.Item
                 value={platform.name}
                 key={platform.id}
-                onClick={() => onSelectPlatform(platform)}
+                onClick={() => setSelectedPlatformId(platform.id)}
               >
                 {platform.name}
               </Menu.Item>

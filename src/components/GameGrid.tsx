@@ -1,27 +1,27 @@
 import useQueryGames from "@/hooks/useQueryGames";
 import { SimpleGrid, Spinner, Text } from "@chakra-ui/react";
 // import useGames from "@/hooks/useGames";
-import type { GameQuery } from "@/App";
+import React from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 import GameCard from "./GameCard";
 import GameCardContainer from "./GameCardContainer";
 import GameCardSkeleton from "./GameCardSkeleton";
-import React from "react";
-import InfiniteScroll from "react-infinite-scroll-component";
 
 //Passing the selectedGenre to the GameGrid so that it can be passed to the backend when fetching the games
-interface Props {
-  gameQuery: GameQuery;
-}
+// interface Props {
+//   gameQuery: GameQuery;
+// }
 // selectedGenre: Genre | null;
 // selectedPlatform: Platform | null;
 
-function GameGrid({ gameQuery }: Props) {
+function GameGrid() {
   /* passing the selectedGenre and selectedPlatform as an argument to the games hook
   const { data, error, isLoading } = useGames(selectedGenre, selectedPlatform);*/
 
   // instead of passing multiple argument to the games hook we pass qameQuery which contains the 2 argument or anything we need
+
   const { data, error, isLoading, hasNextPage, fetchNextPage } =
-    useQueryGames(gameQuery);
+    useQueryGames();
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
   const fetchGamesCount =
     data?.pages.reduce((total, page) => total + page.results.length, 0) || 0;
