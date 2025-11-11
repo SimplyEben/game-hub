@@ -3,7 +3,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import ms from "ms";
 import useGameQueryStore from "../../src/components/store";
 // import type { Platform } from "./usePlatforms";
-import type { Game } from "./useGames";
+import type { Game } from "../entities/Game";
 
 // export interface Game {
 //   id: number;

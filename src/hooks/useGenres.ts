@@ -3,12 +3,7 @@ import genres from "@/data/genres";
 import ms from "ms";
 import APIClient from "@/services/api-client";
 import { useQuery } from "@tanstack/react-query";
-
-export interface Genre {
-  id: number;
-  name: string;
-  image_background: string;
-}
+import type { Genre } from "../entities/Genre";
 
 /*instead of using the data hook to call the server, we should return an object with 3 properties {data, isLoading, error}. This is to minimize the impact of this change on the consumers of this hook
 const useGenres = () => useData<Genre>("/genres");*/

@@ -14,14 +14,14 @@ function App() {
   /*the  selectedGenre variable can either hold the Genre object or null.
  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);*/
 
-  /*a state variable for keeping track of the selected platform. when the platform changes we pass the selected platform to the GameGrid for filtering
+/*a state variable for keeping track of the selected platform. when the platform changes we pass the selected platform to the GameGrid for filtering
 const [selectedPlatform, setSelecetedPlatform] = useState<Platform | null>(
     null
   );*/
 
-  //refactoring our state hooks selectedPlatform and selectedGenre to a gameQuery hook
-  // const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
-  /*return (
+//refactoring our state hooks selectedPlatform and selectedGenre to a gameQuery hook
+// const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
+/*return (
     <>
       <Grid
         templateAreas={{
@@ -34,9 +34,9 @@ const [selectedPlatform, setSelecetedPlatform] = useState<Platform | null>(
         }}
       >
         <Box hideBelow="lg">
-          {/* passing the props that take the genre object to the GenreList component*/}
-          /*<GridItem area="aside" paddingX={5}>
-            {/* passing a prop as a function that takes the selected genre object and call => setSelectedGenre(genre)*/}
+          {/* passing the props that take the genre object to the GenreList component*/
+/*<GridItem area="aside" paddingX={5}>
+            {/* passing a prop as a function that takes the selected genre object and call => setSelectedGenre(genre)*/
 //             <GenreList />
 //           </GridItem>
 //         </Box>
