@@ -1,6 +1,6 @@
-import type { Platform } from "@/entities/Platform";
-import type { Genre } from "./Genre";
-import type { Publisher } from "./Publishers";
+import type Platform from "@/entities/Platform";
+import type Genre from "./Genre";
+import type Publisher from "./Publishers";
 
 // export interface Platform {
 //   id: number;
@@ -35,7 +35,7 @@ import type { Publisher } from "./Publishers";
 // //the selectedGenre is optional so if selectedGenre is null, the genre will also be null.
 // export default useGames;
 // //the games hook passes the selectedGenre as a query string parameter to the data hook. We also added an array of dependencies so if any of the dependencies changes, the effect will re-render and fetch the data from the server.
-export interface Game {
+export default interface Game {
   id: number;
   name: string;
   genres: Genre[];

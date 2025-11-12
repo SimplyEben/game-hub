@@ -1,10 +1,10 @@
 // import type { GameQuery } from "@/App";
 // import useData from "./useData";
 
-import { useQuery } from "@tanstack/react-query";
 import APIClient from "@/services/api-client";
+import { useQuery } from "@tanstack/react-query";
 // import type { Game } from "./useQueryGames";
-import type { Game } from "../entities/Game";
+import type Game from "../entities/Game";
 const apiClient = new APIClient<Game>("/games");
 const useGame = (slug: string) =>
   useQuery({
