@@ -2,6 +2,7 @@ import { HStack, Image } from "@chakra-ui/react";
 import logo from "../assets/logo.webp";
 import ModeSwitch from "./ModeSwitch";
 import SearchInput from "./SearchInput";
+import { Link } from "react-router-dom";
 
 // interface Props {
 //   onSearch: (searchText: string) => void;
@@ -10,7 +11,9 @@ import SearchInput from "./SearchInput";
 function NavBar() {
   return (
     <HStack padding="10px">
-      <Image src={logo} boxSize="60px" />
+      <Link to="/">
+        <Image src={logo} boxSize="60px" objectFit="cover" />
+      </Link>
       <SearchInput />
       <ModeSwitch />
     </HStack>
