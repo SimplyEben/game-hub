@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 // }
 
 function SearchInput() {
+  //Passing a selector to the store query and select the update function so that the component will only be dependent on the setSearchText and not the entire useGameQueryStore.
+
   const setSearchText = useGameQueryStore((s) => s.setSearchText);
   const ref = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();

@@ -1,12 +1,14 @@
 import { create } from "zustand";
 
-export interface GameQuery {
+// gameQuery object
+interface GameQuery {
   genreId?: number;
   platformId?: number;
   sortOrder?: string;
   searchText?: string;
 }
 
+//function for updating the properties in gameQuery object
 interface GameQueryStore {
   gameQuery: GameQuery;
   setSearchText: (searchText: string) => void;

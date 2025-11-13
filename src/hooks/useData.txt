@@ -1,4 +1,4 @@
-import apiClient from "@/services/api-client";
+import apiClient, { type FetchResponse } from "@/services/api-client";
 import { CanceledError, type AxiosRequestConfig } from "axios";
 import { useState, useEffect } from "react";
 

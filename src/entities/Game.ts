@@ -16,7 +16,7 @@ import type Publisher from "./Publishers";
 //   parent_platforms: { platform: Platform }[];
 //   //the parent_platform is an array of objects where each object has a property of platform of type Platform
 // }
-// // we need to pass the selectedGenre to the data hook but our data hook currently only takes an endpoint bu we can make it flexible by given it an axios request config object. Done in the useData hook
+// // we need to pass the selectedGenre to the data hook but our data hook currently only takes an endpoint but we can make it flexible by given it an axios request config object. Done in the useData hook
 // /*both refactored to gameQuery selectedGenre: Genre | null,
 //   selectedPlatform: Platform | null */
 // const useGames = (gameQuery: GameQuery) =>
